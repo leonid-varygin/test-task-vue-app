@@ -4,9 +4,7 @@ import store from './store'
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueTreeList from 'vue-tree-list'
 
-Vue.use(VueTreeList)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 
