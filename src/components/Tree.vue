@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <Tree
       id="my-tree-id"
       ref="my-tree"
@@ -7,7 +7,6 @@
       :custom-styles="myCustomStyles"
       :nodes="items"
     />
-  </div>
 
 </template>
 
@@ -25,20 +24,17 @@ export default {
       return {
         tree: {
           height: 'auto',
-          maxHeight: '250px',
-          overflowX: 'auto',
-          overflowY: 'auto',
+          maxHeight: '300px',
+          overflowX: 'visible',
           display: 'inline-block',
-          paddingLeft: '5px',
-          marginRight: '16px',
-          marginBottom: '0px',
-          paddingBottom: '50px'
+          paddingLeft: '0px'
+
         },
         row: {
-          width: '320px',
+          width: '400px',
           cursor: 'pointer',
           child: {
-            height: '25px'
+            height: '35px'
           }
         },
         text: {
@@ -149,3 +145,6 @@ export default {
   }
 }
 </script>
+
+<style>
+</style>

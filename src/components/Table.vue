@@ -1,4 +1,5 @@
 <template>
+  <b-container>
     <b-table responsive="true" bordered hover :items="items" :fields="fields">
 
       <template v-slot:cell(title)="row" >
@@ -23,6 +24,8 @@
         <b-form-input v-model="row.item.details.description" @blur="saveChanges" @keypress.enter="saveChanges"/>
       </template>
     </b-table>
+
+  </b-container>
 </template>
 
 <script>
