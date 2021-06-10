@@ -7,11 +7,14 @@ Vue.use(VueLocalStorage)
 
 export default new Vuex.Store({
   state: {
-    data: null
+    data: []
   },
   mutations: {
-    getData (state, items) {
-      state.data = items
+    getData (state, dataItems) {
+      state.data = dataItems
+    },
+    updateTreeChanges (state, changedState) {
+      return { ...state.data, changedState }
     }
 
   },
@@ -25,35 +28,82 @@ export default new Vuex.Store({
       }
     },
     setDataToLS () {
-      const items = [
-        {
-          id: '532405ueigjasep6456ew4564ee4756',
-          details: {
-            title: 'Some Title',
-            options: {
-              option1: 'Option One',
-              option2: 'Option Two',
-              option3: 'Option Three'
+      const items = [{
+        id: '532405ueigjasep6456ew4564ee4756',
+        details: {
+          treeDisplayData: [
+            {
+              text: 'Root 1',
+              nodes: [
+                {
+                  text: 'Child 1',
+                  nodes: [
+                    {
+                      text: 'Grandchild 1'
+                    },
+                    {
+                      text: 'Grandchild 2'
+                    }
+                  ]
+                },
+                {
+                  text: 'Child 2'
+                }
+              ]
             },
-            aColon: 10,
-            bColon: 'Enter any string:)',
-            description: 'Enter your awesome description!'
-          }
-        },
-        {
-          id: '532405ueigjasep6456ew4564ee47fsfsfesrtw3534r56',
-          details: {
-            title: 'Some Title 1',
-            options: {
-              option1: 'Option One 1',
-              option2: 'Option Two 1',
-              option3: 'Option Three 1'
+            {
+              text: 'Root 2'
+            }
+          ],
+          title: 'Some Title',
+          options: {
+            option1: 'Option One',
+            option2: 'Option Two',
+            option3: 'Option Three'
+          },
+          aColon: 10,
+          bColon: 'Enter any string:)',
+          description: 'Enter your awesome description!'
+        }
+      },
+      {
+        id: '532405ueigjasep6456ew4564ee47fsfsfesrtw3534r56',
+        details: {
+          treeDisplayData: [
+            {
+              text: 'Root 3',
+              nodes: [
+                {
+                  text: 'Child 3-1',
+                  nodes: [
+                    {
+                      text: 'Grandchild 3'
+                    },
+                    {
+                      text: 'Grandchild 4'
+                    }
+                  ]
+                },
+                {
+                  text: 'Child 2'
+                }
+              ]
             },
-            aColon: 20,
-            bColon: 'Enter any string:)',
-            description: 'Enter your awesome description!'
-          }
-        }]
+            {
+              text: 'Root 4'
+            }
+          ],
+          title: 'Some Title',
+          options: {
+            option1: 'Option One',
+            option2: 'Option Two',
+            option3: 'Option Three'
+          },
+          aColon: 10,
+          bColon: 'Enter any string:)',
+          description: 'Enter your awesome description!'
+        }
+      }]
 
       if (!localStorage.getItem('items')) {
         Vue.localStorage.set('items', JSON.stringify(items))
@@ -61,6 +111,9 @@ export default new Vuex.Store({
     },
     saveChanges (newState) {
       Vue.localStorage.set('items', JSON.stringify(newState.state.data))
+    },
+    saveChangesInTree ({ commit }, changedState) {
+      commit('updateTreeChanges', changedState)
     }
   }
 })
