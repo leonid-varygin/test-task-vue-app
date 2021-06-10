@@ -25,12 +25,17 @@ export default {
       return {
         tree: {
           height: 'auto',
-          maxHeight: '300px',
-          overflowY: 'visible',
-          display: 'inline-block'
+          maxHeight: '250px',
+          overflowX: 'auto',
+          overflowY: 'auto',
+          display: 'inline-block',
+          paddingLeft: '5px',
+          marginRight: '16px',
+          marginBottom: '0px',
+          paddingBottom: '50px'
         },
         row: {
-          width: '400px',
+          width: '320px',
           cursor: 'pointer',
           child: {
             height: '25px'
